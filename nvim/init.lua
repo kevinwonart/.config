@@ -35,9 +35,10 @@ local plugins = {
   { "ntk148v/habamax.nvim", name = "habamax", dependencies={ "rktjmp/lush.nvim" }, priority = 1000 },
   { "catppuccin/nvim", priority = 1000 },
   { 
-    'nvim-telescope/telescope.nvim', tag = '0.1.5',
-    dependencies = { 'nvim-lua/plenary.nvim' }
+    "nvim-telescope/telescope.nvim", tag = "0.1.5",
+    dependencies = { "nvim-lua/plenary.nvim", "BurntSushi/ripgrep", "sharkdp/fd"}
   },
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate"  },
 }
 
 require("lazy").setup(plugins)
