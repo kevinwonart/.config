@@ -17,6 +17,12 @@ vim.api.nvim_set_var('clipboard', {
   },
   cache_enabled = 0,
 })
+vim.cmd [[ autocmd VimLeave * mksession! ~/session.vim ]]
+if vim.fn.filereadable("~/session.vim") == 1 then
+    vim.cmd [[ source ~/session.vim ]]
+end
+vim.api.nvim_set_keymap('n', '<C-h>', ':tabprevious<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-l>', ':tabnext<CR>', {noremap = true, silent = true})
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
