@@ -21,8 +21,10 @@ vim.cmd [[ autocmd VimLeave * mksession! ~/session.vim ]]
 if vim.fn.filereadable("~/session.vim") == 1 then
     vim.cmd [[ source ~/session.vim ]]
 end
-vim.api.nvim_set_keymap('n', '<C-h>', ':tabprevious<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<C-l>', ':tabnext<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-h>', ':tabprevious<CR>', {noremap = true, silent = true}) --toggle tab
+vim.api.nvim_set_keymap('n', '<C-l>', ':tabnext<CR>', {noremap = true, silent = true}) --toggle tab
+vim.api.nvim_set_keymap('i', '<C-j>', '<C-n>', { noremap = true, silent = true }) --remap toggle up in autocomplete menu
+vim.api.nvim_set_keymap('i', '<C-k>', '<C-p>', { noremap = true, silent = true }) --remap toggle dwn in autocomplete menu
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
