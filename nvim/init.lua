@@ -29,3 +29,5 @@ vim.cmd [[ autocmd VimLeave * mksession! ~/session.vim ]]
 if vim.fn.filereadable("~/session.vim") == 1 then
     vim.cmd [[ source ~/session.vim ]]
 end
+
+--cheating
