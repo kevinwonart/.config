@@ -30,28 +30,6 @@ local function load_plugins()
   return plugins
 end
 local plugins = load_plugins()
-
---[[
-local plugins = {
-  { "williamboman/mason-lspconfig.nvim" },
-  {},
-  { "ntk148v/habamax.nvim", name = "habamax", dependencies={ "rktjmp/lush.nvim" }, priority = 1000 },
-  { "catppuccin/nvim", priority = 1000 },
-  { 
-    "nvim-telescope/telescope.nvim", tag = "0.1.5",
-    dependencies = { "nvim-lua/plenary.nvim", "BurntSushi/ripgrep", "sharkdp/fd"}
-  },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "typescript", "tsx" })
-      end
-    end,
-  },
-}
---]]
-
 require("lazy").setup(plugins)
 local builtin = require("telescope.builtin")
 
