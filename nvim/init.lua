@@ -13,9 +13,10 @@ vim.cmd("set wrap linebreak nolist")
 vim.cmd("set number relativenumber")
 vim.cmd("set nu rnu")
 vim.cmd("set clipboard+=unnamedplus")
+vim.cmd("set textwidth=100");
 --vim.cmd("command! E Explore")
 
-local is_linux = vim.loop.os_uname().sysname == "Linux"
+--local is_linux = vim.loop.os_uname().sysname == "Linux"
 local is_wsl = is_linux and (os.getenv("WSL_DISTRO_NAME") ~= nil)
 
 local use_wsl_clipboard = false
