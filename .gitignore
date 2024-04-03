@@ -70,3 +70,6 @@ user-dirs.dirs
 user-dirs.locale
 webengineurlinterceptoradblockrc
 xsettingsd/
+htop/
+kconf_updaterc.lock
+systemmonitorrc
