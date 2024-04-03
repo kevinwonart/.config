@@ -2,6 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -125,6 +126,10 @@ alias kw="cd ~/proj/kevinwonart"
 alias lv="cd ~/proj/love2dgame"
 alias ngapp="cd ~/proj/ng-app/todo-app"
 alias odin="cd ~/proj/odinproj"
+alias docs="cd /mnt/c/users/kevin/OneDrive/Documents"
+alias jrnl="cd /mnt/c/users/kevin/OneDrive/Documents/main/journal"
+alias resume=" cd /mnt/c/Users/kevin/OneDrive/01_Vocational"
+alias nv="nvim"
 
 mkcd() {
   mkdir -p "$1" && cd "$1"
@@ -143,4 +148,9 @@ source <(ng completion script)
 
 export HOST_IP="$(ip route |awk '/^default/{print $3}')"
 export PULSE_SERVER="tcp:$HOST_IP"
+
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
 #export DISPLAY="$HOST_IP:0.0"
