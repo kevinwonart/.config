@@ -9,4 +9,7 @@ while read package; do
   sudo apt-get install -y "$package"
 done < installed_packages.txt
 
-echo "Install Package Complete"
+# Copy configuration files to home directory
+cp .bashrc .Xmodmap .gitconfig .tmux.conf ~/
+
+echo "Installed packages complete and configuration files copied."
