@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "tsserver", "eslint" }
+        ensure_installed = { "lua_ls", "tsserver", "eslint", "gopls" }
       })
     end
   },
@@ -20,6 +20,7 @@ return {
       lspconfig.lua_ls.setup({})
       lspconfig.tsserver.setup({})
       lspconfig.eslint.setup({})
+      lspconfig.gopls.setup({})
       vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {})
       vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
@@ -56,5 +57,5 @@ return {
         end,
       })
     end
-  }
+  },
 }
