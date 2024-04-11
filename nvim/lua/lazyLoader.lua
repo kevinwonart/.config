@@ -15,7 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 local function load_plugins()
   local plugins = {}
   local pluginPath = vim.fn.stdpath('config') .. '/lua/plugins'
-  local scan= vim.fn.globpath(pluginPath, '*.lua')
+  local scan = vim.fn.globpath(pluginPath, '*.lua')
 
   for _, file in ipairs(vim.split(scan, '\n')) do
     if file ~= "" then
@@ -26,13 +26,14 @@ local function load_plugins()
       table.insert(plugins, plugin_config)
     end
   end
-
   return plugins
 end
+
 local plugins = load_plugins()
 require("lazy").setup(plugins)
 local builtin = require("telescope.builtin")
 
+require('go').setup()
 require('lush')(require('lush_theme.habamax'))
 vim.cmd("colorscheme habamax")
 

@@ -1,11 +1,6 @@
 require("lazyLoader")
-
-vim.api.nvim_set_keymap('n', '<C-h>', ':tabprevious<CR>', {noremap = true, silent = true}) --toggle tab
-vim.api.nvim_set_keymap('n', '<C-l>', ':tabnext<CR>', {noremap = true, silent = true}) --toggle tab
-vim.api.nvim_set_keymap('i', '<C-j>', '<C-n>', { noremap = true, silent = true }) --remap toggle up in autocomplete menu
-vim.api.nvim_set_keymap('i', '<C-k>', '<C-p>', { noremap = true, silent = true }) --remap toggle dwn in autocomplete menu
-vim.api.nvim_set_keymap('n', '<C-t>', ':tabnew<CR>', {noremap = true, silent = true})--tabnew
-vim.api.nvim_set_keymap('n', ':E', ':Ex<CR>', {noremap=true})
+require("core.keymap").setup()
+require("core.commands").setup()
 
 vim.cmd("set shiftwidth=2 smarttab")
 vim.cmd("set expandtab")
@@ -54,6 +49,18 @@ end
 
 vim.cmd [[ autocmd VimLeave * mksession! ~/session.vim ]]
 if vim.fn.filereadable("~/session.vim") == 1 then
-    vim.cmd [[ source ~/session.vim ]]
+  vim.cmd [[ source ~/session.vim ]]
 end
 
+-- Function to check if LSP is attached and format
+local function format_on_save()
+  if vim.lsp.buf_get_clients() then
+    vim.lsp.buf.format()
+  end
+end
+
+-- Auto command to run formatting on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = format_on_save,
+})
