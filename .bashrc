@@ -143,9 +143,6 @@ tnvim(){
 export PATH="$PATH:/home/vicky/.local/bin"
 
 
-# Load Angular CLI autocompletion.
-source <(ng completion script)
-
 export HOST_IP="$(ip route |awk '/^default/{print $3}')"
 export PULSE_SERVER="tcp:$HOST_IP"
 
