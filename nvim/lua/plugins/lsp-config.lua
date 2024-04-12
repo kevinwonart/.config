@@ -21,6 +21,33 @@ return {
       lspconfig.tsserver.setup({})
       lspconfig.eslint.setup({})
       lspconfig.gopls.setup({})
+      function ToggleDiagnostics()
+        if vim.b.diagnostics_visible == nil or vim.b.diagnostics_visible then
+          -- Hide diagnostics and stop them from updating
+          vim.diagnostic.hide()
+          vim.b.diagnostics_visible = false
+          print("Diagnostics hidden")
+          -- Disable diagnostic updates
+          vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
+        else
+          -- Show diagnostics and allow them to update
+          vim.diagnostic.show()
+          vim.b.diagnostics_visible = true
+          print("Diagnostics visible")
+          -- Restore default diagnostic handler
+          vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+            vim.lsp.diagnostic.on_publish_diagnostics, {
+              -- Enable underline, sign, and virtual text diagnostics
+              underline = true,
+              virtual_text = true,
+              signs = true,
+              update_in_insert = false, -- Set to true if you want updates while typing
+            }
+          )
+        end
+      end
+
+      vim.keymap.set('n', '<leader>td', ToggleDiagnostics, { desc = "Toggle Diagnostics Visibility" })
       vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {})
       vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
@@ -29,7 +56,7 @@ return {
       -- Use LspAttach autocommand to only map the following keys
       -- after the language server attaches to the current buffer
       vim.api.nvim_create_autocmd('LspAttach', {
-      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+        group = vim.api.nvim_create_augroup('UserLspConfig', {}),
         callback = function(ev)
           -- Enable completion triggered by <c-x><c-o>
           vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
