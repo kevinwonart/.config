@@ -64,3 +64,18 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = format_on_save,
 })
+
+function load_boilerplates()
+  local boilerplate_dir = vim.fn.stdpath('config') .. '/lua/boilerplate/*.lua'
+  local files = vim.split(vim.fn.glob(boilerplate_dir), "\n")
+
+  for _, file_path in ipairs(files) do
+    if file_path ~= "" then
+      local file = file_path:match("([^/]+)%.lua$")
+      require('boilerplate.' .. file)
+    end
+  end
+end
+
+-- Call the function to load all boilerplate scripts
+load_boilerplates()
