@@ -644,6 +644,7 @@ netbase
 nftables
 node-jquery
 nodejs
+npm
 ocl-icd-libopencl1:amd64
 openssh-client
 openssh-server
