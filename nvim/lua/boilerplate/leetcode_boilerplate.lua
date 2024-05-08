@@ -12,6 +12,7 @@ function M.insert_boilerplate()
     " *",
     " *",
     " */",
+    "export { }"
   }
 
   -- Get the current buffer
